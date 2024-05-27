@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNetCore.WebUtilities
+
+@page "/routingto/{page}"
+@inject NavigationManager NavManager
+
+<h3>RoutingTo</h3>
+
+<button onclick="GoToPage">Go To Page: @Page</button>
+
+@code {
+	public string Page { get; set; }
+
+	private void GoToPage()
+	{
+		NavManager.NavigateTo(Page);
+	}
+}

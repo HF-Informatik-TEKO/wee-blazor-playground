@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.WebUtilities
+
+@page "/routing"
+@inject NavigationManager NavManager
+
+<h3>Routing</h3>
+
+
+<a href="@HomePageURI">Go To HomePage</a>
+<p>base uri: @HomePageURI</p>
+
+<br />
+
+<p>your color: @Color</p>
+
+
+@code {
+	// TODO: Implement an input field + button to go to the RountingToExample.
+
+	public string HomePageURI { get; set; }
+
+	public string Color { get; set; }
+
+	protected override void OnInitialized()
+	{
+		HomePageURI = NavManager.BaseUri;
+		var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+		if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("color", out var extraTopping))
+		{
+			Color = System.Convert.ToString(extraTopping);
+		}
+	}
+}
