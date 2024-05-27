@@ -5,7 +5,15 @@
 
 <h3>Todo (@(todos.Count(e => !e.IsDone)))</h3>
 
+<p>input on tabout/enter: @newTodo</p>
 <input @bind="newTodo" />
+
+<p>input update oninput: @newTodo</p>
+<input @bind-value="newTodo" @bind-value:event="oninput"/>
+
+<p>date (yyyy-MM-dd)</p>
+<input @bind="date" @bind:format="yyyy-MM-dd" />
+
 <button @onclick="AddTodo">Add todo</button>
 
 <br />
@@ -23,6 +31,7 @@
 @code {
     private List<TodoItem> todos = new();
     private string newTodo = string.Empty;
+    private DateTime date;
 
     private void AddTodo()
     {
