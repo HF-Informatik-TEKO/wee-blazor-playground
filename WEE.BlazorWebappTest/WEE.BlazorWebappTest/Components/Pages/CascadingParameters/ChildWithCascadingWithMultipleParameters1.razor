@@ -1,0 +1,14 @@
+﻿<h5>ChildWithCascadingWithMultipleParameters1</h5>
+
+<p>Name: @CompName</p>
+<p>Value: @Value</p>
+<p>Description: @Description</p>
+
+@code {
+    [CascadingParameter]
+    public string CompName { get; set; }
+    [CascadingParameter(Name = "Hello")]
+    public string Value { get; set; }
+    [Parameter]
+    public string Description { get; set; }
+}
