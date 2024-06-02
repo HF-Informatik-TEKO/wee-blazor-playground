@@ -2,24 +2,35 @@
 
 @page "/routing"
 @inject NavigationManager NavManager
+@rendermode InteractiveServer
+
 
 <h3>Routing</h3>
 
 
 <a href="@HomePageURI">Go To HomePage</a>
 <p>base uri: @HomePageURI</p>
+<NavLink href=@HomePageURI Match="NavLinkMatch.All">Home Page</NavLink>
+<br />
+<br />
+
+<p>Try input "?color=my-color" after the current url.</p>
+<p>your color: @Color</p>
 
 <br />
 
-<p>your color: @Color</p>
+<input @bind="_routingPage" />
+<button @onclick="RouteToPage">go to page with link to '(@_routingPage)'</button>
+
+
 
 
 @code {
-	// TODO: Implement an input field + button to go to the RountingToExample.
-
 	public string HomePageURI { get; set; }
 
 	public string Color { get; set; }
+
+	private string _routingPage = "counter";
 
 	protected override void OnInitialized()
 	{
@@ -29,5 +40,10 @@
 		{
 			Color = System.Convert.ToString(extraTopping);
 		}
+	}
+
+	private void RouteToPage()
+	{
+		NavManager.NavigateTo($"/routingto/{_routingPage}");
 	}
 }

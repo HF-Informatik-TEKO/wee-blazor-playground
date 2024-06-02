@@ -1,13 +1,18 @@
 ﻿@using Microsoft.AspNetCore.WebUtilities
+@using WEE.BlazorWebappTest.Components.Layout
+
 
 @page "/routingto/{page}"
+@layout MyLayout
 @inject NavigationManager NavManager
+@rendermode InteractiveServer
 
 <h3>RoutingTo</h3>
 
-<button onclick="GoToPage">Go To Page: @Page</button>
+<button @onclick="GoToPage">Go To Page: @Page</button>
 
 @code {
+	[Parameter]
 	public string Page { get; set; }
 
 	private void GoToPage()
