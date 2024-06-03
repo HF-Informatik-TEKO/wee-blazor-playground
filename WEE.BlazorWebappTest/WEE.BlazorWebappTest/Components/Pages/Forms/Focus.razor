@@ -1,0 +1,29 @@
+﻿
+@page "/focus"
+@rendermode InteractiveServer
+
+<h3>Focus</h3>
+
+<button class="btn btn-primary" @onclick="() => ChangeFocus(InputField)">Click me to change focus</button>
+<input @ref=InputField @onfocus="HandleFocus" value="@_data"/>
+
+<br />
+<br />
+<button class="btn btn-primary" @onclick="() => ChangeFocus(NotFocusable)">Try focus the unfocusable</button>
+<input @ref=NotFocusable @onfocus="() => ChangeFocus(InputField)" value="You can't focus me'" />
+
+@code {
+    private ElementReference InputField;
+    private ElementReference NotFocusable;
+    private string _data;
+
+    private async Task ChangeFocus(ElementReference e)
+    {
+        await e.FocusAsync();
+    }
+
+    private async Task HandleFocus()
+    {
+        _data = "Received focus";
+    }
+}
