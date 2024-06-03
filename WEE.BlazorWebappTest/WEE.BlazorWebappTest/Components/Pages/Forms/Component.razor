@@ -1,0 +1,18 @@
+﻿
+@page "/subcomponent"
+@rendermode InteractiveServer
+
+<h3>Component</h3>
+
+<p>Value from sub-component: @_inputFromSubComponent</p>
+
+<SubComponent Callback="MyCallback" />
+
+@code {
+    private string _inputFromSubComponent = string.Empty;
+
+    private void MyCallback(string val)
+    {
+        _inputFromSubComponent = $"** {val} **";
+    }
+}

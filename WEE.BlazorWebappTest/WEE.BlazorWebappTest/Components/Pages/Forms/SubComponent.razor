@@ -1,0 +1,21 @@
+﻿@rendermode InteractiveServer
+
+<h3>Subcomponent</h3>
+
+<input @bind-value="Value" @bind-value:event="oninput" />
+
+@code {
+    [Parameter]
+    public EventCallback<string> Callback { get; set; }
+
+    private string _value = "insert text here";
+    public string Value
+    {
+        get => _value;
+        set
+        {
+            _value = value;
+            Callback.InvokeAsync(value).Wait();
+        }
+    }
+}
