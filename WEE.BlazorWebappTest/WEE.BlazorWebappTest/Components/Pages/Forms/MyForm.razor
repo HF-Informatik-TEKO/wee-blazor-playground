@@ -1,0 +1,53 @@
+﻿@page "/myform"
+@using WEE.BlazorWebappTest.Components.Models
+
+<h3>MyForm</h3>
+
+<EditForm Model="@_currentPerson">
+    <div>
+        <label>First Name: </label>
+        <InputText @bind-Value="_currentPerson.FirstName" />
+    </div>
+    <div>
+        <label>Last Name: </label>
+        <InputText @bind-Value="_currentPerson.LastName" />
+    </div>
+    <div>
+        <label>Age: </label>
+        <InputNumber @bind-Value="_currentPerson.Age" />
+    </div>
+    <div>
+        <label>Birth Date: </label>
+        <InputDate @bind-Value="_currentPerson.BirthDate" />
+    </div>
+    <div>
+        <label>Is Male: </label>
+        <InputCheckbox @bind-Value="_currentPerson.IsMale" />
+    </div>
+</EditForm>
+
+
+
+@code {
+    // TODO: Add a submit button.
+
+
+    private IEnumerable<MyPerson> _persons;
+    private MyPerson _currentPerson;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _persons = 
+        [
+            new() 
+            {
+                FirstName = "Peter",
+                LastName = "Schröder",
+                Age = 24,
+                BirthDate = new DateTime(2024, 06, 03),
+                IsMale = true
+            }
+        ];
+        _currentPerson = _persons.FirstOrDefault();
+    }
+}
