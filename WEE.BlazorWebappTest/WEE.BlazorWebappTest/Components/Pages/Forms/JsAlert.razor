@@ -1,0 +1,42 @@
+﻿
+@page "/jsalert"
+@rendermode InteractiveServer
+@inject IJSRuntime JS
+
+
+<h3>JS Alert</h3>
+
+<button class="btn btn-primary" @onclick="HandleClick" >Click me for JS alert</button>
+<br />
+<br />
+<div @onclick="HandleDivClick">
+    <button class="btn btn-primary" @onclick="ButtonClick" @onclick:stopPropagation >Without div handle</button>
+    <br />    
+    <button class="btn btn-primary" @onclick="ButtonClick">With div handle</button>
+    <br />
+    <input value="with div handle" @onkeypress="KeyPress" @onkeypress:preventDefault />
+</div>
+
+
+
+@code {
+    private async Task HandleClick(MouseEventArgs e)
+    {
+        await JS.InvokeVoidAsync("alert", "java script alert message from c# blazor");
+    }
+
+    private async Task HandleDivClick()
+    {
+        await JS.InvokeVoidAsync("alert", "Div click");
+    }
+
+    private async Task KeyPress(KeyboardEventArgs e)
+    {
+        await JS.InvokeVoidAsync("alert", "Key Press");
+    }
+
+    private async Task ButtonClick(MouseEventArgs e)
+    {
+        await JS.InvokeVoidAsync("alert", "Button Click");
+    }
+}
