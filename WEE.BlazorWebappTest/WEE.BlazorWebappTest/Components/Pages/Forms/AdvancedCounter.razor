@@ -1,0 +1,53 @@
+﻿@page "/advancedcounter"
+@rendermode InteractiveServer
+
+<h1>Advanced Counter</h1>
+
+<h3>C# Blazor Counter</h3>
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<br />
+<br />
+<p>Click the button to increment by 1</p>
+<p>Hold SHIFT to add 1000</p>
+<p>Hold CTRL to add 100</p>
+
+<br />
+<br />
+
+<h3>JS Counter</h3>
+<p id="jsCount">JS count: 0</p>
+
+<button onclick="incrementCount()">Click me</button>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var currentCount = 0;
+
+    function incrementCount() {
+        currentCount++;
+        $('#jsCount').html('JS count:' + currentCount);
+    }
+</script>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount(MouseEventArgs e)
+    {
+        if (e.ShiftKey)
+        {
+            currentCount += 1000;
+        }
+        else if (e.CtrlKey) // Ctrl key pressed as well
+        {
+            currentCount += 100;
+        }
+        else
+        {
+            currentCount++;
+        }
+    }
+}
