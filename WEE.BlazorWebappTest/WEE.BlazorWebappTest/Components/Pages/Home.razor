@@ -1,4 +1,9 @@
-﻿@page "/"
+﻿
+
+@using WEE.BlazorWebappTest.Components.Pages.Components
+
+@page "/"
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
@@ -7,3 +12,34 @@
 Welcome to your new app.
 
 <Counter IncrementAmount="10"/>
+
+<div class="image"></div>
+
+<button @onclick="() => _isDialog = true">Show Dialog</button>
+@if (!string.IsNullOrEmpty(_dialogOutcome))
+{
+    <p>You clicked on @_dialogOutcome</p>
+}
+
+<ModalDialog Title="My first Modal dialog" Show="@_isDialog" OnConfirm="DialogConfirm" OnCancel="DialogCancel">
+    <p>This is my first modal dialog</p>
+</ModalDialog>
+
+
+
+@code {
+    private bool _isDialog = false;
+    private string _dialogOutcome = string.Empty;
+
+    private void DialogConfirm()
+    {
+        _isDialog = false;
+        _dialogOutcome = "OK";
+    }
+
+    private void DialogCancel()
+    {
+        _isDialog = false;
+        _dialogOutcome = "Cancel";
+    }
+}
