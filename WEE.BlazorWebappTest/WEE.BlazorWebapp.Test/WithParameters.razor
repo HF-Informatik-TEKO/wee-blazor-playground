@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components.Web
+
 <h3>Component1</h3>
 
 <p>@Text</p>
@@ -14,9 +15,4 @@
     public RenderFragment ChildContent { get; set; }
     [Parameter]
     public EventCallback Action { get; set; }
-
-    void ClickHandler(MouseEventArgs args)
-    {
-        // ...
-    }
 }

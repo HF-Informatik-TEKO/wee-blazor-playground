@@ -22,7 +22,7 @@ namespace WEE.BlazorWebappTest
                 app.UseHsts();
             }
 
-            
+
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();

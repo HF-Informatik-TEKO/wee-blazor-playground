@@ -1,6 +1,4 @@
-using Xunit;
 using Bunit;
-using WEE.BlazorWebapp.Test;
 
 namespace WEE.BlazorWebapp.Test;
 
@@ -10,7 +8,7 @@ public class HelloWorldTest : TestContext
     public void TestWithInherit()
     {
         // Act
-        // cut = component under testing
+        // cut: Component Under Testing
         var cut = RenderComponent<HelloWorld>();
 
         // Assert

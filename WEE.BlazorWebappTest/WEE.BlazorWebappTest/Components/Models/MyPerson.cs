@@ -7,7 +7,7 @@ public record MyPerson
     [Required(ErrorMessage = "First name is required.")]
     [StringLength(10)]
     public required string FirstName { get; set; }
-    [Required] 
+    [Required]
     public required string LastName { get; set; }
     [Required]
     [Range(0, 150)]
