@@ -1,7 +1,11 @@
 ﻿@page "/mytodo"
 @rendermode InteractiveServer
 
-<h3>Todo List</h3>
+@inject TodoService Service;
+
+<link rel="stylesheet" href="Rainbow.css">
+
+<h3 class="@RainbowClass" @onclick="() => _isRainbow = !_isRainbow" >Todo List</h3>
 
 <div>
     <input type="text" @bind-value="_filterValue" @bind-value:event="oninput" placeholder="Filter" />
@@ -21,7 +25,7 @@
 <div>
     <input type="text" @bind-value="_newTodo.Name" @bind-value:event="oninput" @onkeydown="HandleKeyDown" placeholder="Todo Name" />
     <input type="date" @bind-value="_newTodo.DueDate" placeholder="2024-07-10" />
-    <button @onclick="AddTodo">Add Todo</button>
+    <button class="btn btn-primary" @onclick="AddTodo">Add Todo</button>
 </div><br />
 
 @foreach (var item in GetManipulatedItems())
@@ -35,10 +39,13 @@
     private string _filterValue = string.Empty;
     private string _sortKey = MyTodoSorting.None.ToString();
     private string _isReverse = string.Empty;
+    private bool _isRainbow = true;
+
+    public string RainbowClass => _isRainbow ? "rainbow" : string.Empty;
 
     private void AddTodo(MouseEventArgs? e = null)
     {
-        _newTodo.Name ??= $"Item {_todoItems.Count}";
+        _newTodo.Name ??= Service.GetItemName(_todoItems.Count);
 
         _todoItems.Add(_newTodo);
         _newTodo = new();

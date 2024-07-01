@@ -1,6 +1,6 @@
 ﻿<div>
     @ChildContent
-    <input type="checkbox" @bind="Item.IsDone"/>
+    <input class="checkbox" type="checkbox" @bind="Item.IsDone"/>
     <span>[@(Item.DueDate?.ToString("d"))]</span>
     <span>(@Till?.Days)</span>
     <span> - </span>
