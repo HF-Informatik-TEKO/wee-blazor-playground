@@ -1,0 +1,18 @@
+﻿<div>
+    @ChildContent
+    <input type="checkbox" @bind="Item.IsDone"/>
+    <span>[@(Item.DueDate?.ToString("d"))]</span>
+    <span>(@Till?.Days)</span>
+    <span> - </span>
+    <span>@Item.Name</span>
+</div>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public TodoItem Item { get; set; } = new();
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    public TimeSpan? Till => Item.DueDate - DateTime.Today;
+}
