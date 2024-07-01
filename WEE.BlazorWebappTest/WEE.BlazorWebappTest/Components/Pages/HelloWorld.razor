@@ -1,0 +1,23 @@
+﻿@page "/helloworld"
+@rendermode InteractiveServer
+
+<h3>Hello World</h3>
+
+<p>@_displayText</p>
+<button @onclick="() => { _toggle = !_toggle; }">Click Me</button>
+
+@code {
+    private string _displayText => _toggle ? "World" : "Hello";
+    private bool _toggle = false;
+}
+
+
+
+
+
+
+
+
+
+
+
