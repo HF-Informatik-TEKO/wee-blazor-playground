@@ -3,35 +3,37 @@
 
 @inject TodoService Service;
 
-<link rel="stylesheet" href="Rainbow.css">
+ <link rel="stylesheet" href="Rainbow.css">
 
-<h3 class="@RainbowClass" @onclick="() => _isRainbow = !_isRainbow" >Todo List</h3>
+ <div class="background">
+    <h3 class="hello @RainbowClass" @onclick="() => _isRainbow = !_isRainbow" >Todo List</h3>
 
-<div>
-    <input type="text" @bind-value="_filterValue" @bind-value:event="oninput" placeholder="Filter" />
-    <InputSelect @bind-Value="_sortKey">
-        @foreach (var e in Enum.GetValues(typeof(MyTodoSorting)))
-        {
-            var name = e.ToString();
-            <option value="@name">@name</option>
-        }
-    </InputSelect>
-    <InputSelect @bind-Value="_isReverse">
-        <option value="">no reverse</option>
-        <option value="reversed">reversed</option>
-    </InputSelect>
-</div><br />
+    <div>
+        <input type="text" @bind-value="_filterValue" @bind-value:event="oninput" placeholder="Filter" />
+        <select @bind="_sortKey">
+            @foreach (var e in Enum.GetValues(typeof(MyTodoSorting)))
+            {
+                var name = e.ToString();
+                <option value="@name">@name</option>
+            }
+        </select>
+        <select @bind="_isReverse">
+            <option value="">no reverse</option>
+            <option value="reversed">reversed</option>
+        </select>
+    </div><br />
 
-<div>
-    <input type="text" @bind-value="_newTodo.Name" @bind-value:event="oninput" @onkeydown="HandleKeyDown" placeholder="Todo Name" />
-    <input type="date" @bind-value="_newTodo.DueDate" placeholder="2024-07-10" />
-    <button class="btn btn-primary" @onclick="AddTodo">Add Todo</button>
-</div><br />
+    <div>
+        <input type="text" @bind-value="_newTodo.Name" @bind-value:event="oninput" @onkeydown="HandleKeyDown" placeholder="Todo Name" />
+        <input type="date" @bind-value="_newTodo.DueDate" placeholder="2024-07-10" />
+        <button class="btn btn-primary" @onclick="AddTodo">Add Todo</button>
+    </div><br />
 
-@foreach (var item in GetManipulatedItems())
-{
-    <MyTodoItem Item="item" ></MyTodoItem>
-}
+    @foreach (var item in GetManipulatedItems())
+    {
+        <MyTodoItem Item="item" ></MyTodoItem>
+    }
+ </div>
 
 @code {
     private readonly List<TodoItem> _todoItems = [];

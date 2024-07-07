@@ -1,4 +1,6 @@
-﻿<div>
+﻿@using WEE.BlazorWebappTest.Components.Pages.MyTodos
+
+<div>
     @ChildContent
     <input class="checkbox" type="checkbox" @bind="Item.IsDone"/>
     <span>[@(Item.DueDate?.ToString("d"))]</span>

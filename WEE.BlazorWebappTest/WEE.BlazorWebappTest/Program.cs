@@ -1,4 +1,5 @@
 using WEE.BlazorWebappTest.Components;
+using WEE.BlazorWebappTest.Components.Pages.MyTodos;
 
 namespace WEE.BlazorWebappTest
 {
@@ -9,6 +10,7 @@ namespace WEE.BlazorWebappTest
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddSingleton<TodoService>();
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 

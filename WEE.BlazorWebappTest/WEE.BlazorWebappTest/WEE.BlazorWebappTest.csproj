@@ -6,12 +6,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="wwwroot\Rainbow.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Rainbow.css" />
-  </ItemGroup>
-
 </Project>

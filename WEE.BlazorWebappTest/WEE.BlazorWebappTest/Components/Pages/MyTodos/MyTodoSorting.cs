@@ -1,4 +1,4 @@
-﻿namespace WEE.BlazorWebappTest.Components.Pages.MyTodo;
+﻿namespace WEE.BlazorWebappTest.Components.Pages.MyTodos;
 
 public enum MyTodoSorting
 {
