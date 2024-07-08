@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34902.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEE.BlazorWebappTest", "WEE.BlazorWebappTest\WEE.BlazorWebappTest.csproj", "{689A102B-8D32-4F7E-A7D7-E1AF4B4A1502}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEE.BlazorWebapp.Test", "WEE.BlazorWebapp.Test\WEE.BlazorWebapp.Test.csproj", "{1AA1FE4E-4AC6-4049-B7CB-B120C433D04A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{689A102B-8D32-4F7E-A7D7-E1AF4B4A1502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{689A102B-8D32-4F7E-A7D7-E1AF4B4A1502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{689A102B-8D32-4F7E-A7D7-E1AF4B4A1502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{689A102B-8D32-4F7E-A7D7-E1AF4B4A1502}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA1FE4E-4AC6-4049-B7CB-B120C433D04A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA1FE4E-4AC6-4049-B7CB-B120C433D04A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA1FE4E-4AC6-4049-B7CB-B120C433D04A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA1FE4E-4AC6-4049-B7CB-B120C433D04A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56585EB5-1257-4F20-998A-C25A2A6FC2AB}
+	EndGlobalSection
+EndGlobal

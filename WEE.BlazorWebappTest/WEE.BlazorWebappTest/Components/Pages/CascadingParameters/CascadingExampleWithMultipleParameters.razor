@@ -1,0 +1,14 @@
+﻿
+<h3>Cascading Example With Multiple Parameters</h3>
+
+<CascadingValue Value="compName">
+    <CascadingValue Name="Hello" Value="value">
+        <ChildWithCascadingWithMultipleParameters1 Description="hello world" />
+        <ChildWithCascadingWithMultipleParameters2 Number="123" />
+    </CascadingValue>
+</CascadingValue>
+
+@code {
+    const string compName = "cascading child name";
+    const string value = "world";
+}

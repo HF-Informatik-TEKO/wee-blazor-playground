@@ -1,0 +1,89 @@
+﻿@using WEE.BlazorWebappTest.Components.Models
+
+@page "/myform"
+@rendermode InteractiveServer
+
+<h3>MyForm</h3>
+
+<input type="number" width="2" min="0" max="@_persons.Count" @onchange="ChangePerson" value="@_personNumber"/>
+
+<EditForm Model="@_currentPerson" OnValidSubmit="ValidSubmission" OnInvalidSubmit="InvalidSubmission" >
+    <div>
+        <label>First Name: </label>
+        <InputText @bind-Value="_currentPerson.FirstName" />
+        <ValidationMessage For="() => _currentPerson.FirstName" />
+    </div>
+    <div>
+        <label>Last Name: </label>
+        <InputText @bind-Value="_currentPerson.LastName" />
+        <ValidationMessage For="() => _currentPerson.LastName" />
+    </div>
+    <div>
+        <label>Age: </label>
+        <InputNumber @bind-Value="_currentPerson.Age" />
+        <ValidationMessage For="() => _currentPerson.Age" />
+    </div>
+    <div>
+        <label>Birth Date: </label>
+        <InputDate @bind-Value="_currentPerson.BirthDate" />
+        <ValidationMessage For="() => _currentPerson.BirthDate" />
+    </div>
+    <div>
+        <label>Is Male: </label>
+        <InputCheckbox @bind-Value="_currentPerson.IsMale" />
+        <ValidationMessage For="() => _currentPerson.IsMale" />
+    </div>
+
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <button>Submit</button>
+</EditForm>
+
+
+
+@code {
+    private int _personNumber = 0;
+    private Dictionary<int, MyPerson> _persons = [];
+    private MyPerson _currentPerson = new() { FirstName = "Jack", LastName = "O'Neill" };
+
+    protected override async Task OnInitializedAsync()
+    {
+        _persons.Add(0, new()
+            {
+                FirstName = "Peter",
+                LastName = "Schröder",
+                Age = 24,
+                BirthDate = new DateTime(2024, 06, 03),
+                IsMale = true
+            });
+    }
+
+    private void ChangePerson(ChangeEventArgs e)
+    {
+        _personNumber = int.Parse(e.Value as string);
+        if (_personNumber < _persons.Count && _personNumber >= 0)
+        {
+            _currentPerson = _persons[_personNumber];
+        }
+    }
+
+    private void HandleSubmission(EditContext context)
+    {
+        var isDataValid = context.Validate();
+        if (isDataValid)
+        {
+            _persons.Add(_persons.Count, _currentPerson);
+        }
+    }
+
+    private void ValidSubmission(EditContext context)
+    {
+        _persons.Add(_persons.Count, _currentPerson);
+    }
+
+    private void InvalidSubmission(EditContext context)
+    {
+        
+    }
+}

@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.WebUtilities
+
+@page "/routing"
+@inject NavigationManager NavManager
+@rendermode InteractiveServer
+
+
+<h3>Routing</h3>
+
+
+<a href="@HomePageURI">Go To HomePage</a>
+<p>base uri: @HomePageURI</p>
+<NavLink href=@HomePageURI Match="NavLinkMatch.All">Home Page</NavLink>
+<br />
+<br />
+
+<p>Try input "?color=my-color" after the current url.</p>
+<p>your color: @Color</p>
+
+<br />
+
+<input @bind="_routingPage" />
+<button @onclick="RouteToPage">go to page with link to '(@_routingPage)'</button>
+
+
+
+
+@code {
+	public string HomePageURI { get; set; }
+
+	public string Color { get; set; }
+
+	private string _routingPage = "counter";
+
+	protected override void OnInitialized()
+	{
+		HomePageURI = NavManager.BaseUri;
+		var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+		if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("color", out var extraTopping))
+		{
+			Color = System.Convert.ToString(extraTopping);
+		}
+	}
+
+	private void RouteToPage()
+	{
+		NavManager.NavigateTo($"/routingto/{_routingPage}");
+	}
+}

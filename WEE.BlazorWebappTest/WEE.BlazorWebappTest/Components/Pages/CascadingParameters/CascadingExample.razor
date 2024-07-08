@@ -1,0 +1,16 @@
+﻿@page "/cascading"
+
+<h1>Cascading Example</h1>
+
+<CascadingValue Value="childName" >
+    <CascadingExampleWithoutCascading />
+    <CascadingExampleWithCascadingWithoutName />
+    <CascadingExampleWithCascadingWithName />
+    <CascadingExampleWithCascadingFromParent />
+    <CascadingExampleWithMultipleParameters />
+</CascadingValue>
+
+
+@code {
+    const string childName = "child name from parent";
+}

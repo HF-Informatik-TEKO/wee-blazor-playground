@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+
+<h3>Component1</h3>
+
+<p>@Text</p>
+
+<p>@ChildContent</p>
+
+<button @onclick="Action">Click ME!</button>
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public EventCallback Action { get; set; }
+}

@@ -1,0 +1,93 @@
+﻿@page "/mytodo"
+@rendermode InteractiveServer
+
+@inject TodoService Service;
+
+ <link rel="stylesheet" href="Rainbow.css">
+
+<h3 class="hello @RainbowClass" @onclick="() => _isRainbowMode = !_isRainbowMode" >Todo List</h3>
+
+<div>
+    <input type="text" @bind-value="_filterValue" @bind-value:event="oninput" placeholder="Filter" />
+    <select @bind="_sortKey">
+        @foreach (var e in Enum.GetValues(typeof(MyTodoSorting)))
+        {
+            var name = e.ToString();
+            <option value="@name">@name</option>
+        }
+    </select>
+    <select @bind="_isReverse">
+        <option value="">no reverse</option>
+        <option value="reversed">reversed</option>
+    </select>
+</div><br />
+
+<div>
+    <input type="text" @bind-value="_newTodo.Name" @bind-value:event="oninput" @onkeydown="HandleKeyDown" placeholder="Todo Name" />
+    <input type="date" @bind-value="_newTodo.DueDate" placeholder="2024-07-10" />
+    <button class="btn btn-primary" @onclick="AddTodo">Add Todo</button>
+</div><br />
+
+@foreach (var item in GetManipulatedItems())
+{
+    <MyTodoItem Item="item" ></MyTodoItem>
+}
+
+@code {
+    private readonly List<TodoItem> _todoItems = [];
+    private TodoItem _newTodo = new();
+    private string _filterValue = string.Empty;
+    private string _sortKey = MyTodoSorting.None.ToString();
+    private string _isReverse = string.Empty;
+    private bool _isRainbowMode = true;
+
+    public string RainbowClass => _isRainbowMode ? "rainbow" : string.Empty;
+
+    private void AddTodo(MouseEventArgs? e = null)
+    {
+        _newTodo.Name ??= Service.GetItemName(_todoItems.Count);
+
+        _todoItems.Add(_newTodo);
+        _newTodo = new();
+    }
+
+    private void HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            AddTodo();
+        }
+    }
+
+    #region Data Manipulation
+    private IEnumerable<TodoItem> GetManipulatedItems()
+    {
+        var filtered = FilterItems(_todoItems, _filterValue);
+        var parsedSortKey = (MyTodoSorting)Enum.Parse(typeof(MyTodoSorting), _sortKey);
+        var sorted = SortItems(filtered, parsedSortKey);
+        var reversed = ReverseItems(sorted, _isReverse);
+
+        return reversed;
+    }
+
+    private IEnumerable<TodoItem> FilterItems(IEnumerable<TodoItem> items, string filter)
+        => string.IsNullOrWhiteSpace(_filterValue)
+            ? items
+            : items.Where(e => e.Name?.Contains(_filterValue) ?? false);
+
+    private IEnumerable<TodoItem> SortItems(IEnumerable<TodoItem> items, MyTodoSorting sortKey)
+        => sortKey switch
+        {
+            MyTodoSorting.Done => items.OrderBy(e => e.IsDone),
+            MyTodoSorting.Name => items.OrderBy(e => e.Name),
+            MyTodoSorting.DueDate => items.OrderBy(e => e.DueDate),
+            MyTodoSorting.Created => items.OrderBy(e => e.Created),
+            _ => items,
+        };
+
+    private IEnumerable<TodoItem> ReverseItems(IEnumerable<TodoItem> items, string reverseKey)
+        => string.IsNullOrEmpty(reverseKey)
+            ? items
+            : items.Reverse();
+    #endregion
+}

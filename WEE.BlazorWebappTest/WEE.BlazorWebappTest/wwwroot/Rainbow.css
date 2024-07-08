@@ -1,0 +1,35 @@
+﻿
+@keyframes rainbowcolors {
+    0% {
+        color: lightgray;
+    }
+
+    20% {
+        color: yellow;
+    }
+
+    40% {
+        color: orangered;
+    }
+
+    60% {
+        color: dodgerblue;
+    }
+
+    80% {
+        color: forestgreen;
+    }
+
+    100% {
+        color: ghostwhite;
+    }
+}
+
+.rainbow {
+    animation-name: rainbowcolors;
+    animation-delay: 1s;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: backwards;
+    background-color: rgb(66, 70, 72);
+}

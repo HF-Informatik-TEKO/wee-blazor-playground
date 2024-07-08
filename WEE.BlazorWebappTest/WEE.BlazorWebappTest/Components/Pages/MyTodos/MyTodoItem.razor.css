@@ -1,0 +1,12 @@
+
+.checkbox {
+    width: 15px;
+    height: 15px;
+    accent-color: green;
+}
+
+input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: green;
+}

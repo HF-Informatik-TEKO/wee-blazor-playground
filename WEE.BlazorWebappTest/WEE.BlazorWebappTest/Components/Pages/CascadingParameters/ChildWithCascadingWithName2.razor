@@ -1,0 +1,11 @@
+﻿<h5>ChildWithCascadingWithName2</h5>
+
+<p>Name: @CompName</p>
+<p>Description: @Number</p>
+
+@code {
+    [CascadingParameter(Name = "ChildName")]
+    public string CompName { get; set; }
+    [Parameter]
+    public int Number { get; set; }
+}
